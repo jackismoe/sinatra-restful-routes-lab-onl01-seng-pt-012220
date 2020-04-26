@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :index
   end
-  
+
   # loads new form
   get '/recipes/new' do
     erb :new
@@ -24,4 +24,22 @@ class ApplicationController < Sinatra::Base
     @recipe = Recipe.find_by_id(params[:id])
     erb :show
   end
+
+  # loads edit form
+  get '/recipes/:id/edit' do
+    @recipe = Recipe.find_by_id(parms[:id])
+    erb :edit
+  end
+
+  # updates a recipe
+  patch '/recipes/:id' do
+    @recipe = Recipe.find_by_id(parms[:id])
+    @recipe.name = params[:name]
+    @recipe.ingredients = params[:ingredients]
+    @recipe.cook_time = params[:cook_time]
+    @recipe.save
+    redirect to '/recipes/#{@recipe.id}'
+  end
+
+
 end
