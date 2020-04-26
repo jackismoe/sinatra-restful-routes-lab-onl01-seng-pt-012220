@@ -1,3 +1,5 @@
+require './config/environment'
+
 class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
@@ -16,7 +18,7 @@ class ApplicationController < Sinatra::Base
   end
 
   # loads show page
-  get 'recipes/:id' do
+  get '/recipes/:id' do
     @recipe = Recipe.find_by_id(params[:id])
     erb :show
   end
