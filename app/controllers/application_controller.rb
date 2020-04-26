@@ -4,10 +4,6 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  get '/' do
-    erb :index
-  end
-
   # loads new form
   get '/recipes/new' do
     erb :new
@@ -38,13 +34,13 @@ class ApplicationController < Sinatra::Base
     @recipe.ingredients = params[:ingredients]
     @recipe.cook_time = params[:cook_time]
     @recipe.save
-    redirect to '/recipes/#{@recipe.id}'
+    redirect to "/recipes/#{@recipe.id}"
   end
 
   # creates a recipe
   post '/recipes' do
     @recipe = Recipe.create(params)
-    redirect to '/recipes/#{@recipe.id}'
+    redirect to "/recipes/#{@recipe.id}"
   end
 
   # destroy action
