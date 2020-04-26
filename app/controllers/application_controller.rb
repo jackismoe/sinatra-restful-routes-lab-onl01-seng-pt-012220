@@ -18,6 +18,6 @@ class ApplicationController < Sinatra::Base
   # loads show page
   get 'recipes/:id' do
     @recipe = Recipe.find_by_id(params[:id])
-    erb :edit
+    erb :show
   end
 end
