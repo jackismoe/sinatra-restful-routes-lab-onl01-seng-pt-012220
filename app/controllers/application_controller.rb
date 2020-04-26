@@ -4,6 +4,15 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
-  # code actions here!
+  # loads new form
+  get '/recipes/new' do
+    erb :new
+  end 
+
+  # loads index page
+  get '/recipes' do
+    @recipes = Recipe.all
+    erb :index
+  end
 
 end
